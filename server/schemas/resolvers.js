@@ -20,7 +20,9 @@ const resolvers = {
 
     Mutation: {
         addUser: async (parent, args) => {
+            console.log(args)
             const user = await User.create(args);
+            
             const token = signToken(user);
             console.log(token, 'toke log')
 
@@ -60,7 +62,7 @@ const resolvers = {
               if(context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { savedRecipes: { RecipeId: params.RecipeId } } },
+                    { $pull: { savedRecipes: { RecipeId: args.RecipeId } } },
                     { new: true }
                   );
 
