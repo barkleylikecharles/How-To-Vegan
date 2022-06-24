@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,6 +8,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+import SearchRecipes from './pages/SearchRecipe';
+import SavedRecipes from './pages/SavedRecipe';
 import  Navbar from './components/Navbar';
 
 
@@ -37,6 +39,11 @@ function App() {
       <Router>
         <>
         <Navbar />
+        <Routes>
+          <Route  exact path='/' component={SearchRecipes} />
+          <Route  exact path='/' component={SavedRecipes} />
+          <Route render={() => <h1 className='display-2'>Wrong Page!</h1>} />
+        </Routes>
         </>
       </Router>
     </ApolloProvider>
