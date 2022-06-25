@@ -18,13 +18,14 @@ const SearchRecipes = () => {
  // create state to hold saved recipeId values
   const [savedRecipeIds, setSavedRecipeIds] = useState(getSavedRecipeIds());
 
-  const [saveRecipe, { error }] = useMutation(SAVE_RECIPE);
+  // const [saveRecipe, { error }] = useMutation(SAVE_RECIPE);
 
   // set up useEffect hook to save `savedRecipeIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
     return () => saveRecipeIds(savedRecipeIds);
   });
+  const [saveRecipe, { error }] = useMutation(SAVE_RECIPE);
 
     // create method to search for Recipes and set state on form submit
     const handleFormSubmit = async (event) => {
@@ -40,16 +41,20 @@ const SearchRecipes = () => {
           if (!response.ok) {
             throw new Error('something went wrong!');
           }
-    
-          const { items } = await response.json();
-    
-          const recipeData = items.map((recipe) => ({
+
+          const items  = await response.json();
+          console.log(items)
+          const recipeData = items.results.map((recipe) => ({
+            // recipeId: recipe.ID
             recipeId: recipe.id,
-            authors: recipe.volumeInfo.authors || ['No author to display'],
-            title: recipe.volumeInfo.title,
-            description: recipe.volumeInfo.description,
-            image: recipe.volumeInfo.imageLinks?.thumbnail || '',
+            // authors: recipe.volumeInfo.authors || ['No author to display'],
+            title: recipe.title,
+            // description: recipe.volumeInfo.description,
+            image: recipe.image || '',
+          
           }));
+
+          console.log(recipeData)
     
           setSearchedRecipes(recipeData);
           setSearchInput('');
