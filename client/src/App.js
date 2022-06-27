@@ -11,6 +11,7 @@ import { setContext } from '@apollo/client/link/context';
 import SearchRecipes from './pages/SearchRecipe';
 import SavedRecipes from './pages/SavedRecipe';
 import SearchDining from './pages/SearchDining';
+import MapContainer from './components/MapContainer';
 import  Navbar from './components/Navbar';
 
 
@@ -40,6 +41,7 @@ function App() {
       <Router>
         <>
         <Navbar />
+        <MapContainer />
         <Routes>
           <Route  exact path='/' element={<SearchRecipes />} />
           <Route  exact path='/' element={<SavedRecipes />} />

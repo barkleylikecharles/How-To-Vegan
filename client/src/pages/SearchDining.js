@@ -158,4 +158,4 @@ const SearchDining= () => {
   );
 }
 
-export default SearchDining
+export default SearchDining;
