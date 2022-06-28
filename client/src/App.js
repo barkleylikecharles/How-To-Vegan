@@ -43,6 +43,7 @@ function App() {
         <Navbar />
         {/* <MapContainer /> */}
         <Routes>
+          <Route  exact path='/' element={<SearchRecipes />} />
           <Route  exact path='/recipes' element={<SearchRecipes />} />
           <Route  exact path='/savedrecipes' element={<SavedRecipes />} />
           <Route  exact path='/dining' element={<SearchDining />} />
