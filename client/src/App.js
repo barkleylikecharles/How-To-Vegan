@@ -41,11 +41,11 @@ function App() {
       <Router>
         <>
         <Navbar />
-        <MapContainer />
+        {/* <MapContainer /> */}
         <Routes>
           <Route  exact path='/' element={<SearchRecipes />} />
           <Route  exact path='/' element={<SavedRecipes />} />
-          <Route  exact path='/' element={<SearchDining />} />
+          <Route  exact path='/dining' element={<SearchDining />} />
           <Route render={() => <h1 className='display-2'>Wrong Page!</h1>} />
         </Routes>
         </>
