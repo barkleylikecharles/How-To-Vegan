@@ -24,7 +24,7 @@ const AppNavBar = () => {
                     <Nav.Link as={Link} to='/'>
                         Search For Recipes
                     </Nav.Link>
-                    <Nav.Link as={Link} to='/'>
+                    <Nav.Link as={Link} to='/dining'>
                         Search For Restaurants
                     </Nav.Link>
                        {/* if user is logged in show saved books and logout */}
