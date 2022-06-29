@@ -41,7 +41,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route  exact path='/' element={<SearchRecipes />} />
-          <Route  exact path='/' element={<SavedRecipes />} />
+          <Route  exact path='/saved' element={<SavedRecipes />} />
           <Route render={() => <h1 className='display-2'>Wrong Page!</h1>} />
         </Routes>
         </>
