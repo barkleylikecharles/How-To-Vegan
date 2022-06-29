@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -18,8 +18,8 @@ function MyComponent(props) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyB-O3fHzc3MbMi-GSsdCFCZ0UhxYaTI10A"
-  })
-
+  });
+  
   const [map, setMap] = React.useState(null)
 
   const [markedPlaceData, setMarkedPlaceData] = React.useState([])
@@ -27,16 +27,24 @@ function MyComponent(props) {
   // const onLoad = marker => {
   //   console.log('marker: ', marker)
   // }
-
-  const onLoad = React.useCallback(function callback(map) {
-    const data = (props.markedPlaces.map((p) => {
+  useEffect(()=> {
+    const data = props.markedPlaces.map((p) => {
       return {
-        lat: p.geometry.location.lat,
-        lng: p.geometry.location.lng,
-        name: p.name
+                   lat: p.geometry.location.lat,
+          lng: p.geometry.location.lng,
+  
+        name: p.name,
       }
-    }))
+    })
+    console.log(typeof data[0].lat, "data")
+    console.log(typeof center.lat)
     setMarkedPlaceData(data)
+
+  },[props])
+console.log(markedPlaceData)
+  const onLoad = React.useCallback(function callback(map) {
+  
+
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);
     setMap(map)
@@ -46,26 +54,32 @@ function MyComponent(props) {
     setMap(null)
   }, [])
 
-  return isLoaded ? (
+  return isLoaded && markedPlaceData && markedPlaceData.length > 0 ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={5}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
+      zoom={15}
+      // onLoad={onLoad}
+      // onUnmount={onUnmount}
     >
-      { /* Child components, such as markers, info windows, etc. */}
-      {
-        markedPlaceData.map((p, index) => {
-          console.log(p)
-          return (
-            <Marker
-              key={"marker-" + index}
-              position={{ lat: p.lat, lng: p.lng }}
-              label={p.name}
+       <Marker
+              key={"marker-" + "index"}
+              position={ {lat: props.markedPlaces[0].geometry.location.lat, lng: props.markedPlaces[0].geometry.location.lng}} 
+              // position={{lat: markedPlaceData[0].lat, lng: markedPlaceData[0].lng}} 
+              label= {markedPlaceData[0].name}
             />
-          )
-        })
+      { /* Child components, such as markers, info windows, etc. */}
+      {  
+        // markedPlaceData.map((p, index) => {
+        
+          // return (
+            // <Marker
+            //   key={"marker-" + "index"}
+            //   position={{lat: markedPlaceData[0].lat, lng: markedPlaceData[0].lng}} 
+            //   label= {markedPlaceData[0].name}
+            // />
+          
+        // })
       }
       <></>
     </GoogleMap>

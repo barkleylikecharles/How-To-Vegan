@@ -21,20 +21,22 @@ const SearchDining = () => {
 
     const [markedPlaces, setMarkedPlaces] = useState([]);
     const [showMap, setShowMap] = useState(false);
-
+console.log("hello")
     // const [saveRecipe, { error }] = useMutation(SAVE_RECIPE);
 
     // set up useEffect hook to save `savedRecipeIds` list to localStorage on component unmount
     // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
     useEffect(() => {
         return () => saveDiningIds(savedDiningIds);
-    });
+    },[savedDiningIds]
+    );
     const [saveDining, { error }] = useMutation(SAVE_DINING);
 
     // create method to search for Recipes and set state on form submit
     const handleFormSubmit = async (event) => {
+        console.log("hello")
         event.preventDefault();
-
+console.log("feet")
         if (!searchInput) {
             return false;
         }
@@ -44,25 +46,25 @@ const SearchDining = () => {
 
 
 
-            // if (!response.ok) {
-            //     throw new Error('something went wrong!');
-            // }
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
 
-            // const items = await response.json();
-            // console.log(items)
-            // const diningData = items.results.map((dining) => ({
-            //     // recipeId: recipe.ID
-            //     diningId: dining.id,
-            //     // authors: recipe.volumeInfo.authors || ['No author to display'],
-            //     // title: recipe.title,
-            //     // // description: recipe.volumeInfo.description,
-            //     // image: recipe.image || '',
+            const items = await response.json();
+            console.log(items)
+            const diningData = items.results.map((dining) => ({
+                // recipeId: recipe.ID
+                name: dining.name,
+                // authors: recipe.volumeInfo.authors || ['No author to display'],
+                // title: recipe.title,
+                // // description: recipe.volumeInfo.description,
+                // image: recipe.image || '',
 
-            // }));
+            }));
 
             console.log(response)
 
-            setMarkedPlaces(response.results);
+            setMarkedPlaces(items.results);
             setShowMap(true);
             // console.log(diningData)
 
@@ -104,7 +106,7 @@ const SearchDining = () => {
 
 
     const loadMap = () => {
-        if (showMap) {
+        if (showMap && markedPlaces && markedPlaces.length > 0) {
             return <MapContainer markedPlaces={markedPlaces} />
         } else {
             return;
@@ -118,6 +120,7 @@ const SearchDining = () => {
                 <Container>
                     <h1>Search for Vegan-Friendly Restaurants!</h1>
                     <Form onSubmit={handleFormSubmit}>
+                     
                         <Form.Row>
                             <Col xs={12} md={8}>
                                 <Form.Control
@@ -135,6 +138,7 @@ const SearchDining = () => {
                                 </Button>
                             </Col>
                         </Form.Row>
+                    
                     </Form>
                 </Container>
             </Jumbotron>
@@ -148,12 +152,12 @@ const SearchDining = () => {
                 <CardColumns>
                     {searchedDining.map((dining) => {
                         return (
-                            <Card key={dining.diningId} border='dark'>
+                            <Card key={dining.name} border='dark'>
                                 {dining.image ? (
                                     <Card.Img src={dining.image} alt={`The cover for ${dining.title}`} variant='top' />
                                 ) : null}
                                 <Card.Body>
-                                    <Card.Title>{dining.title}</Card.Title>
+                                    <Card.Title>{dining.name}</Card.Title>
                                     <p className='small'>Share </p>
                                     <Card.Text>{dining.description}</Card.Text>
                                     {Auth.loggedIn() && (
