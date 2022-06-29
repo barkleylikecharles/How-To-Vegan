@@ -34,6 +34,9 @@ function MyComponent(props) {
           lng: p.geometry.location.lng,
   
         name: p.name,
+        images: p.photos,
+        hours: p.opening_hours,
+        rating: p.rating
       }
     })
     console.log(typeof data[0].lat, "data")
@@ -64,7 +67,7 @@ console.log(markedPlaceData)
     >
        <Marker
               key={"marker-" + "index"}
-              position={ {lat: props.markedPlaces[0].geometry.location.lat, lng: props.markedPlaces[0].geometry.location.lng}} 
+              position={ {lat: props.markedPlaces[0].lat, lng: props.markedPlaces[0].lng}} 
               // position={{lat: markedPlaceData[0].lat, lng: markedPlaceData[0].lng}} 
               label= {markedPlaceData[0].name}
             />

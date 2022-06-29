@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
-import { useMutation } from '@apollo/client';
+import { disableFragmentWarnings, useMutation } from '@apollo/client';
 import { SAVE_DINING, } from '../utils/mutations';
 
 import Auth from '../utils/auth';
@@ -21,7 +21,7 @@ const SearchDining = () => {
 
     const [markedPlaces, setMarkedPlaces] = useState([]);
     const [showMap, setShowMap] = useState(false);
-console.log("hello")
+
     // const [saveRecipe, { error }] = useMutation(SAVE_RECIPE);
 
     // set up useEffect hook to save `savedRecipeIds` list to localStorage on component unmount
@@ -36,7 +36,7 @@ console.log("hello")
     const handleFormSubmit = async (event) => {
         console.log("hello")
         event.preventDefault();
-console.log("feet")
+
         if (!searchInput) {
             return false;
         }
@@ -54,7 +54,15 @@ console.log("feet")
             console.log(items)
             const diningData = items.results.map((dining) => ({
                 // recipeId: recipe.ID
+                // name: dining.name,
                 name: dining.name,
+                photos: dining.image,
+                address: dining.vicinity,
+                hours: dining.opening_hours,
+                rating: dining.rating,
+                lat: dining.geometry.lat,
+                lon: dining.geometry.lon,
+
                 // authors: recipe.volumeInfo.authors || ['No author to display'],
                 // title: recipe.title,
                 // // description: recipe.volumeInfo.description,
@@ -62,13 +70,13 @@ console.log("feet")
 
             }));
 
-            console.log(response)
+            console.log(diningData)
 
             setMarkedPlaces(items.results);
             setShowMap(true);
-            // console.log(diningData)
+            
 
-            // setSearchedDining(diningData);
+            setSearchedDining(diningData);
             setSearchInput('');
         } catch (err) {
             console.error(err);
@@ -105,11 +113,11 @@ console.log("feet")
     };
 
 
-    const loadMap = () => {
+    const loadMap = (items) => {
         if (showMap && markedPlaces && markedPlaces.length > 0) {
             return <MapContainer markedPlaces={markedPlaces} />
         } else {
-            return;
+            return
         }
     }
 
@@ -154,7 +162,7 @@ console.log("feet")
                         return (
                             <Card key={dining.name} border='dark'>
                                 {dining.image ? (
-                                    <Card.Img src={dining.image} alt={`The cover for ${dining.title}`} variant='top' />
+                                    <Card.Img src={dining.image} alt={`Signage for ${dining.name}`} variant='top' />
                                 ) : null}
                                 <Card.Body>
                                     <Card.Title>{dining.name}</Card.Title>
