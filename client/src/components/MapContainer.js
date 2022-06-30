@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
+
 
 const containerStyle = {
   width: '500px',
@@ -42,6 +44,7 @@ const [mapLoaded, setMapLoaded] = React.useState(false);
         name: p.name,
         images: p.photos,
         hours: p.opening_hours,
+        address: p.formatted_address,
         rating: p.rating
       }
     })
@@ -55,11 +58,35 @@ if (markedPlaceData.length > 0) {
 
 }
   },[props])
+
+  // const Marker = (options) => {
+  //   const [marker, setMarker] = React.useState();
+  
+  //   React.useEffect(() => {
+  //     if (!marker) {
+  //       setMarker(new google.maps.Marker());
+  //     }
+  
+  //     // remove marker from map on unmount
+  //     return () => {
+  //       if (marker) {
+  //         marker.setMap(null);
+  //       }
+  //     };
+  //   }, [marker]);
+  //   React.useEffect(() => {
+  //     if (marker) {
+  //       marker.setOptions(options);
+  //     }
+  //   }, [marker, options]);
+  //   return null;
+  //   console.log(marker, options)
+  // };
 console.log(markedPlaceData)
   const onLoad = React.useCallback(function callback(map) {
   
 
-    const bounds = new window.google.maps.LatLngBounds(markedPlaceData);
+    const bounds = new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
     setMap(map)
   }, [])

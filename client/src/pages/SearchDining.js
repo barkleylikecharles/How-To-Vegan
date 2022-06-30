@@ -59,7 +59,7 @@ const SearchDining = () => {
                 images: dining.photos,
                 image_attr: dining.photos.html_attributions,
                 icon: dining.icon,
-                address: dining.vicinity,
+                address: dining.formatted_address,
                 hours: dining.opening_hours,
                 rating: dining.rating,
                 lat: dining.geometry.location.lat,
