@@ -155,7 +155,7 @@ const SearchDining = () => {
 
             <Container fluid='md'  className="d-grid gap-3">
             <Row>
-                 <Col >
+                 <Col className='p-3' >
              <h2>
                  {searchedDining.length
                      ? `Viewing ${searchedDining.length} results:`
@@ -167,7 +167,7 @@ const SearchDining = () => {
              </Col>
              </Row>
                 <Row>
-                    <Col>
+                    <Col className='p-3'>
                 <CardColumns>
                     {searchedDining.map((dining) => {
                         return (
