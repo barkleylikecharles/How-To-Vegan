@@ -47,7 +47,9 @@ const resolvers = {
         },
 
         saveRecipe: async (parent, args, context) => {
+            console.log(context.user,  "user data")
             if (context.user) {
+               
               const updatedUser = await User.findOneAndUpdate(
                 { _id: context.user._id },
                 { $addToSet: { savedRecipes: args.input } },

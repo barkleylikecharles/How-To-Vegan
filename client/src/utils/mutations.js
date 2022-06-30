@@ -70,3 +70,25 @@ mutation RemoveRecipe($recipeId: ID!) {
   }
 }
 `;
+export const SAVE_DINING = gql`
+mutation SaveDining($input: savedDining!) {
+  saveDining(input: $input) {
+    _id
+    username
+    email
+    recipeCount
+    savedDining {
+      recipeId
+      authors
+      description
+      title
+      image
+      link
+    }
+  }
+}`;
+
+
+
+
+
