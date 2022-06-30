@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Jumbotron, Container, Col, Form, Button, Card, CardColumns, Component } from 'react-bootstrap';
 
 import { useMutation } from '@apollo/client';
 import { SAVE_RECIPE,} from '../utils/mutations';
@@ -51,6 +51,10 @@ const SearchRecipes = () => {
             title: recipe.title,
             // description: recipe.volumeInfo.description,
             image: recipe.image || '',
+            
+            url: recipe.spoonacularSourceUrl,
+            description: recipe.readyInMinutes,
+
           
           }));
 
@@ -132,12 +136,14 @@ const SearchRecipes = () => {
             return (
               <Card key={recipe.recipeId} border='dark'>
                 {recipe.image ? (
-                  <Card.Img src={recipe.image} alt={`The cover for ${recipe.title}`} variant='top' />
+                  <Card.Img src={recipe.image} href={recipe.url} alt={`The cover for ${recipe.title}`} variant='top' />
                 ) : null}
                 <Card.Body>
                   <Card.Title>{recipe.title}</Card.Title>
-                  <p className='small'>Share </p>
-                  <Card.Text>{recipe.description}</Card.Text>
+                  {/* <p className='small'>Share </p> */}
+                  <Card.Text>Prepare in {recipe.description}  minutes</Card.Text>
+              
+                  <Card.Link a href={recipe.url}>View Full Recipe Here</Card.Link>
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedRecipeIds?.some((savedRecipeId) => savedRecipeId === recipe.recipeId)}

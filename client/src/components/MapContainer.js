@@ -64,6 +64,7 @@ console.log(markedPlaceData)
       zoom={15}
       // onLoad={onLoad}
       // onUnmount={onUnmount}
+      
     >
        <Marker
               key={"marker-" + "index"}

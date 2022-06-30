@@ -56,11 +56,11 @@ const SearchDining = () => {
                 // recipeId: recipe.ID
                 // name: dining.name,
                 name: dining.name,
-                photos: dining.image,
+                images: dining.photos,
                 address: dining.vicinity,
                 hours: dining.opening_hours,
                 rating: dining.rating,
-                lat: dining.geometry.lat,
+                lat: dining.geometry.location.lat,
                 lon: dining.geometry.lon,
 
                 // authors: recipe.volumeInfo.authors || ['No author to display'],
@@ -161,13 +161,13 @@ const SearchDining = () => {
                     {searchedDining.map((dining) => {
                         return (
                             <Card key={dining.name} border='dark'>
-                                {dining.image ? (
-                                    <Card.Img src={dining.image} alt={`Signage for ${dining.name}`} variant='top' />
+                                {dining.images ? (
+                                    <Card.Img src={dining.images} alt={`Signage for ${dining.name}`} variant='top' />
                                 ) : null}
                                 <Card.Body>
                                     <Card.Title>{dining.name}</Card.Title>
                                     <p className='small'>Share </p>
-                                    <Card.Text>{dining.description}</Card.Text>
+                                    <Card.Text>{dining.rating}</Card.Text>
                                     {Auth.loggedIn() && (
                                         <Button
                                             disabled={savedDiningIds?.some((savedDiningId) => savedDiningId === dining.diningId)}
