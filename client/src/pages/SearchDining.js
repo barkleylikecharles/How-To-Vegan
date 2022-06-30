@@ -63,7 +63,7 @@ const SearchDining = () => {
                 hours: dining.opening_hours,
                 rating: dining.rating,
                 lat: dining.geometry.location.lat,
-                lon: dining.geometry.lon,
+                lon: dining.geometry.location.lng,
 
                 // authors: recipe.volumeInfo.authors || ['No author to display'],
                 // title: recipe.title,
@@ -139,7 +139,7 @@ const SearchDining = () => {
                                     onChange={(e) => setSearchInput(e.target.value)}
                                     type='text'
                                     size='lg'
-                                    placeholder='Search for a Restaurant'
+                                    placeholder='Please include City name in your Search'
                                 />
                             </Col>
                             <Col xs={12} md={4}>

@@ -59,19 +59,19 @@ console.log(markedPlaceData)
   const onLoad = React.useCallback(function callback(map) {
   
 
-    const bounds = new window.google.maps.LatLngBounds(center);
+    const bounds = new window.google.maps.LatLngBounds(markedPlaceData);
     map.fitBounds(bounds);
     setMap(map)
   }, [])
 
-  const onUnmount = React.useCallback(function callback(map) {
+  const onUnmount = React.useCallback(function callback(markedPlaceData) {
     setMap(null)
   }, [])
 
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      center={center}
+      center={markedPlaceData}
       zoom={15}
       onLoad={onLoad}
       // onUnmount={onUnmount}

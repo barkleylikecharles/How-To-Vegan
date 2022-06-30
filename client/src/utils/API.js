@@ -1,9 +1,11 @@
 export const searchRecipes = (query) => {
     return fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=fc4f60d3201641da841c267cc0cf409e&includeIngredients=true&includeInstruction=true&addRecipeInformation=true`);
   };
+  const API_KEY = process.env.REACT_APP_MAPS_API_KEY;
 
   export const searchDining = (query) => {
-   return fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=41.7658,-72.6734&radius=500&type=restaurant&keyword=${query}&key=AIzaSyBDhheGyZ1A_-E4vfpS3saQRGebunq5krE&libraries=places`);
+//    return fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=41.7658,-72.6734&radius=500&type=restaurant&keyword=${query}&key=AIzaSyBDhheGyZ1A_-E4vfpS3saQRGebunq5krE&libraries=places`);
+        return fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=AIzaSyBDhheGyZ1A_-E4vfpS3saQRGebunq5krE`)
     
 
 
