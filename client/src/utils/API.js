@@ -1,5 +1,5 @@
 export const searchRecipes = (query) => {
-    return fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&includeIngredients&addRecipeInformation&apiKey=fc4f60d3201641da841c267cc0cf409e`);
+    return fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=fc4f60d3201641da841c267cc0cf409e&includeIngredients=true&includeInstruction=true&addRecipeInformation=true`);
   };
 
   export const searchDining = (query) => {

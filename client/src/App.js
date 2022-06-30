@@ -47,7 +47,7 @@ function App() {
         
           <Route  exact path='/' element={<SearchRecipes />} />
           <Route  exact path='/recipes' element={<SearchRecipes />} />
-          <Route  exact path='/savedRecipes' element={SavedRecipes} />
+          <Route  exact path='/saved' element={<SavedRecipes />} />
           <Route  exact path='/dining' element={<SearchDining />} />
           <Route render={() => <h1 className='display-2'>Wrong Page!</h1>} />
        

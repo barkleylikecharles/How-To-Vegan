@@ -19,7 +19,7 @@ const [mapLoaded, setMapLoaded] = React.useState(false);
 
 
   
-  const [map, setMap] = React.useState(null)
+  const [map, setMap] = React.useState()
 
   const [markedPlaceData, setMarkedPlaceData] = React.useState([])
 
@@ -40,6 +40,9 @@ const [mapLoaded, setMapLoaded] = React.useState(false);
           lng: p.geometry.location.lng,
   
         name: p.name,
+        images: p.photos,
+        hours: p.opening_hours,
+        rating: p.rating
       }
     })
     console.log(typeof data[0].lat, "data")
@@ -70,12 +73,13 @@ console.log(markedPlaceData)
       mapContainerStyle={containerStyle}
       center={center}
       zoom={15}
-      // onLoad={onLoad}
+      onLoad={onLoad}
       // onUnmount={onUnmount}
+      
     >
        <Marker
               key={"marker-" + "index"}
-              position= {latLng}
+              position={ {lat: props.markedPlaces[0].lat, lng: props.markedPlaces[0].lng}} 
               // position={{lat: markedPlaceData[0].lat, lng: markedPlaceData[0].lng}} 
               label= {markedPlaceData[0].name}
             />
