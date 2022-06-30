@@ -34,7 +34,7 @@ const recipeSchema = new Schema(
   {
     toJSON: {
       getters: true
-    }
+    } 
   }
 );
 
