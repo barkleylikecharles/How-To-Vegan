@@ -86,7 +86,7 @@ console.log(markedPlaceData)
   const onLoad = React.useCallback(function callback(map) {
   
 
-    const bounds = new window.google.maps.LatLngBounds();
+    const bounds = new window.google.maps.LatLngBounds(latLng);
     map.fitBounds(bounds);
     setMap(map)
   }, [])
@@ -98,7 +98,7 @@ console.log(markedPlaceData)
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      center={markedPlaceData}
+      center={latLng}
       zoom={15}
       onLoad={onLoad}
       // onUnmount={onUnmount}
@@ -106,7 +106,8 @@ console.log(markedPlaceData)
     >
        <Marker
               key={"marker-" + "index"}
-              position={ {lat: props.markedPlaces[0].lat, lng: props.markedPlaces[0].lng}} 
+              // position={ {lat: props.markedPlaces[0].geometry.lat, lng: props.markedPlaces[0].lng}} 
+              position ={latLng}
               // position={{lat: markedPlaceData[0].lat, lng: markedPlaceData[0].lng}} 
               label= {markedPlaceData[0].name}
             />
