@@ -8,17 +8,18 @@
 ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=plastic&logo=markdown&logoColor=white)
 
 ## Description
-Welcome to my Budget Tracker. Keep track of your expenses and income stream with this easy to use application. Offline functionality allows for use anytime/anywhere.
+Welcome to our Animal-Friendly Vegan site! Search for recipes and restaurants in your area.
 
 ## 💻 Installation
-Clone the repo here https://github.com/barkleylikecharles/Budget-Tracker
+Clone the repo here https://github.com/barkleylikecharles/How-To-Vegan
 
 User must do a npm i to initiate all packages 
 
 ## Usage
-npm start
+npm run develop
 To access the app after starting the server, go to http://localhost:3001 in your browser.
 
+##Screenshot
 ## Credits
 Group Project Completed by:
 Aida Tavarez https://github.com/aidyel
