@@ -57,6 +57,8 @@ const SearchDining = () => {
                 // name: dining.name,
                 name: dining.name,
                 images: dining.photos,
+                image_attr: dining.photos.html_attributions,
+                icon: dining.icon,
                 address: dining.vicinity,
                 hours: dining.opening_hours,
                 rating: dining.rating,
@@ -162,12 +164,13 @@ const SearchDining = () => {
                         return (
                             <Card key={dining.name} border='dark'>
                                 {dining.images ? (
-                                    <Card.Img src={dining.images} alt={`Signage for ${dining.name}`} variant='top' />
+                                    <Card.Img  src={dining.images} alt={` ${dining.name}`} variant='top' />
                                 ) : null}
                                 <Card.Body>
                                     <Card.Title>{dining.name}</Card.Title>
+                                    <Card.Text>{dining.address}</Card.Text>
+                                    <Card.Text> Rating: {dining.rating}</Card.Text>
                                     <p className='small'>Share </p>
-                                    <Card.Text>{dining.rating}</Card.Text>
                                     {Auth.loggedIn() && (
                                         <Button
                                             disabled={savedDiningIds?.some((savedDiningId) => savedDiningId === dining.diningId)}

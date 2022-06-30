@@ -20,7 +20,7 @@ function MyComponent(props) {
     googleMapsApiKey: "AIzaSyB-O3fHzc3MbMi-GSsdCFCZ0UhxYaTI10A"
   });
   
-  const [map, setMap] = React.useState(null)
+  const [map, setMap] = React.useState()
 
   const [markedPlaceData, setMarkedPlaceData] = React.useState([])
 
@@ -62,7 +62,7 @@ console.log(markedPlaceData)
       mapContainerStyle={containerStyle}
       center={center}
       zoom={15}
-      // onLoad={onLoad}
+      onLoad={onLoad}
       // onUnmount={onUnmount}
       
     >
