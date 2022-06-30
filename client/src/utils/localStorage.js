@@ -28,4 +28,35 @@ export const saveRecipeIds = (recipeIdArr) => {
   
     return true;
   
+};
+export const getSavedDiningIds = () => {
+  const savedDiningIds = localStorage.getItem('saved_dining')
+  ? JSON.parse(localStorage.getItem('saved_dining'))
+  : [];
+
+return savedDiningIds;
+}
+
+export const saveDiningIds = (diningIdArr) => {
+  if (diningIdArr.length) {
+    localStorage.setItem('saved_dining', JSON.stringify(diningIdArr));
+  } else {
+    localStorage.removeItem('saved_dining');
+  }
+};
+
+export const removeDiningId = (diningId) => {
+  const savedDiningIds = localStorage.getItem('saved_dining')
+    ? JSON.parse(localStorage.getItem('saved_dining'))
+    : null;
+
+  if (!savedDiningIds) {
+    return false;
+  }
+
+  const updatedSavedDiningIds = savedDiningIds?.filter((savedDiningId) => savedDiningId !== diningId);
+  localStorage.setItem('saved_dining', JSON.stringify(updatedSavedDiningIds));
+
+  return true;
+
 }
