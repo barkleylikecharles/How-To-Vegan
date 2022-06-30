@@ -12,8 +12,10 @@ const AppNavBar = () => {
     const [showModal, setShowModal] = useState(false);
 
     return (
+ 
         <>
-        <Navbar bg='dark' variant='dark' expand='lg'>
+             <div >
+        <Navbar className='background-img ' bg='dark' variant='dark' expand='lg'>
         <Container fluid >
             <Navbar.Brand as={Link} to='/'>
                 How To Vegan
@@ -21,27 +23,28 @@ const AppNavBar = () => {
             <Navbar.Toggle aria-controls='navbar' />
             <Navbar.Collapse id='navbar'>
                 <Nav className='ml-auto ' >
-                    <Nav.Link  as={Link} to='/'>
+                    <Nav.Link className='font-weight-bold text-light' as={Link} to='/'>
                         Search For Recipes
                     </Nav.Link>
-                    <Nav.Link as={Link} to='/dining'>
+                    <Nav.Link className='font-weight-bold text-light' as={Link} to='/dining'>
                         Search For Restaurants
                     </Nav.Link>
                        {/* if user is logged in show saved books and logout */}
                        {Auth.loggedIn() ? (
                            <>
-                           <Nav.Link as={Link} to='/saved'>
+                           <Nav.Link className='font-weight-bold text-light'  as={Link} to='/saved'>
                                See Your Recipes
                            </Nav.Link>
                            <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                            </>
                        ) : (
-                        <Nav.Link onClick={() => setShowModal(true)}>Login/ Sign Up</Nav.Link>
+                        <Nav.Link className='font-weight-bold text-light' onClick={() => setShowModal(true)}>Login/ Sign Up</Nav.Link>
                        )}
                 </Nav>
             </Navbar.Collapse>
         </Container>
         </Navbar>
+       
          {/* set modal data up */}
          <Modal
         size='lg'
@@ -74,8 +77,9 @@ const AppNavBar = () => {
           </Modal.Body>
         </Tab.Container>
       </Modal>
-
+      </div>
         </>
+      
     )
 }
 

@@ -118,7 +118,7 @@ console.log("feet")
         <>
             <Jumbotron fluid className='background-img'>
                 <Container  >
-                    <h1>Search for Vegan-Friendly Restaurants!</h1>
+                    <h1 className='text-light'>Search for Vegan-Friendly Restaurants!</h1>
                     <Form onSubmit={handleFormSubmit}>
                      
                         <Form.Row >
@@ -133,7 +133,7 @@ console.log("feet")
                                 />
                             </Col>
                             <Col xs={12} md={4}>
-                                <Button type='submit' variant='success' size='lg'>
+                                <Button type='submit' variant='dark' size='lg'>
                                     Submit Search
                                 </Button>
                             </Col>

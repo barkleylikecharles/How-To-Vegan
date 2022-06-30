@@ -14,3 +14,13 @@ code {
 
 
 
+
+.background-img {
+  background-image: url("./img/vegetables.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 120px;
+
+}
+

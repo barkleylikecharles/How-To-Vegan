@@ -37,21 +37,26 @@ const client = new ApolloClient({
  
 function App() {
   return (
+  
     <ApolloProvider client={client}>
       <Router>
         <>
-        <Navbar className='background-img'  />
+        <Navbar   />
         {/* <MapContainer /> */}
         <Routes>
+        
           <Route  exact path='/' element={<SearchRecipes />} />
           <Route  exact path='/recipes' element={<SearchRecipes />} />
           <Route  exact path='/savedRecipes' element={SavedRecipes} />
           <Route  exact path='/dining' element={<SearchDining />} />
           <Route render={() => <h1 className='display-2'>Wrong Page!</h1>} />
+       
         </Routes>
+        
         </>
       </Router>
     </ApolloProvider>
+
   );
 }
 

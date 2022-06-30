@@ -96,7 +96,7 @@ const SearchRecipes = () => {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark '>
+      <div fluid className='text-light bg-dark background-img '>
         <Container >
           <h1>Search for Recipes!</h1>
           <Form onSubmit={handleFormSubmit}>
@@ -112,16 +112,16 @@ const SearchRecipes = () => {
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
+                <Button type='submit' variant='dark' size='lg'>
                   Submit Search
                 </Button>
               </Col>
             </Form.Row>
           </Form>
         </Container>
-      </Jumbotron>
+      </div>
 
-      <Container>
+      <Container >
         <h2>
           {searchedRecipes.length
             ? `Viewing ${searchedRecipes.length} results:`
