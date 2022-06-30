@@ -1,8 +1,9 @@
 const { Schema, model } = require('mongoose');
 const recipeSchema = require('./Recipe')
 const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
 
-const userSchema = new Schema(
+const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -46,6 +47,6 @@ userSchema.methods.isCorrectPassword = async function(password) {
 };
 
 
-const User = model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
