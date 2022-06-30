@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Jumbotron, Container, Col, Form, Button, Card, CardColumns, Row, Stack } from 'react-bootstrap';
 
 import { disableFragmentWarnings, useMutation } from '@apollo/client';
 import { SAVE_DINING, } from '../utils/mutations';
@@ -56,7 +56,7 @@ const SearchDining = () => {
                 // recipeId: recipe.ID
                 // name: dining.name,
                 name: dining.name,
-                images: dining.photos,
+                images: dining.photos || " ",
                 image_attr: dining.photos.html_attributions,
                 icon: dining.icon,
                 address: dining.formatted_address,
@@ -153,12 +153,21 @@ const SearchDining = () => {
                 </Container>
             </Jumbotron>
 
-            <Container>
-                <h2>
-                    {searchedDining.length
-                        ? `Viewing ${searchedDining.length} results:`
-                        : 'Search for a Restaurant to begin'}
-                </h2>
+            <Container fluid='md'  className="d-grid gap-3">
+            <Row>
+                 <Col >
+             <h2>
+                 {searchedDining.length
+                     ? `Viewing ${searchedDining.length} results:`
+                     : 'Search for a Restaurant to begin'}
+             </h2>
+             <div className='map'>
+             {loadMap()}
+             </div>
+             </Col>
+             </Row>
+                <Row>
+                    <Col>
                 <CardColumns>
                     {searchedDining.map((dining) => {
                         return (
@@ -186,8 +195,10 @@ const SearchDining = () => {
                         );
                     })}
                 </CardColumns>
+                </Col>
+                </Row>
             </Container>
-            {loadMap()}
+           
         </>
     );
 }
