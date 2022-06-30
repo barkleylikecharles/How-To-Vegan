@@ -14,14 +14,14 @@ const AppNavBar = () => {
     return (
         <>
         <Navbar bg='dark' variant='dark' expand='lg'>
-        <Container fluid>
+        <Container fluid >
             <Navbar.Brand as={Link} to='/'>
                 How To Vegan
             </Navbar.Brand>
             <Navbar.Toggle aria-controls='navbar' />
             <Navbar.Collapse id='navbar'>
-                <Nav className='ml-auto'>
-                    <Nav.Link as={Link} to='/'>
+                <Nav className='ml-auto ' >
+                    <Nav.Link  as={Link} to='/'>
                         Search For Recipes
                     </Nav.Link>
                     <Nav.Link as={Link} to='/dining'>

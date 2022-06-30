@@ -11,7 +11,7 @@ import { setContext } from '@apollo/client/link/context';
 import SearchRecipes from './pages/SearchRecipe';
 import SavedRecipes from './pages/SavedRecipe';
 import SearchDining from './pages/SearchDining';
-import MapContainer from './components/MapContainer';
+// import MapContainer from './components/MapContainer';
 import  Navbar from './components/Navbar';
 
 
@@ -34,18 +34,18 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-
+ 
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
         <>
-        <Navbar />
+        <Navbar className='background-img'  />
         {/* <MapContainer /> */}
         <Routes>
           <Route  exact path='/' element={<SearchRecipes />} />
           <Route  exact path='/recipes' element={<SearchRecipes />} />
-          <Route  exact path='/savedrecipes' element={<SavedRecipes />} />
+          <Route  exact path='/savedRecipes' element={SavedRecipes} />
           <Route  exact path='/dining' element={<SearchDining />} />
           <Route render={() => <h1 className='display-2'>Wrong Page!</h1>} />
         </Routes>

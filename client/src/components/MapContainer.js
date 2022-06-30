@@ -13,12 +13,11 @@ const center = {
 
 
 function MyComponent(props) {
+  console.log(props.markedPlaces)
+  let latLng =  {lat: props.markedPlaces[0].geometry.location.lat, lng: props.markedPlaces[0].geometry.location.lng}
+const [mapLoaded, setMapLoaded] = React.useState(false);
 
 
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyB-O3fHzc3MbMi-GSsdCFCZ0UhxYaTI10A"
-  });
   
   const [map, setMap] = React.useState(null)
 
@@ -27,6 +26,13 @@ function MyComponent(props) {
   // const onLoad = marker => {
   //   console.log('marker: ', marker)
   // }
+  console.log('loader')
+  const { isLoaded } = useJsApiLoader({
+
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyB-O3fHzc3MbMi-GSsdCFCZ0UhxYaTI10A"
+  });
+
   useEffect(()=> {
     const data = props.markedPlaces.map((p) => {
       return {
@@ -39,7 +45,12 @@ function MyComponent(props) {
     console.log(typeof data[0].lat, "data")
     console.log(typeof center.lat)
     setMarkedPlaceData(data)
+if (markedPlaceData.length > 0) {
 
+
+ setMapLoaded(true)
+
+}
   },[props])
 console.log(markedPlaceData)
   const onLoad = React.useCallback(function callback(map) {
@@ -54,7 +65,7 @@ console.log(markedPlaceData)
     setMap(null)
   }, [])
 
-  return isLoaded && markedPlaceData && markedPlaceData.length > 0 ? (
+  return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
@@ -64,7 +75,7 @@ console.log(markedPlaceData)
     >
        <Marker
               key={"marker-" + "index"}
-              position={ {lat: props.markedPlaces[0].geometry.location.lat, lng: props.markedPlaces[0].geometry.location.lng}} 
+              position= {latLng}
               // position={{lat: markedPlaceData[0].lat, lng: markedPlaceData[0].lng}} 
               label= {markedPlaceData[0].name}
             />

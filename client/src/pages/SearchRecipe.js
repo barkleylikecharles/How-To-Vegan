@@ -96,8 +96,8 @@ const SearchRecipes = () => {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
+      <Jumbotron fluid className='text-light bg-dark '>
+        <Container >
           <h1>Search for Recipes!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
@@ -136,7 +136,7 @@ const SearchRecipes = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{recipe.title}</Card.Title>
-                  <p className='small'>Share </p>
+                  <p className='small'>Authors: {recipe.authors}</p>
                   <Card.Text>{recipe.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
