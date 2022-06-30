@@ -3,7 +3,7 @@ import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap
 
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
-import { REMOVE_RECIPE } from '../utils/mutations';
+import { SAVED_RECIPE, REMOVE_RECIPE } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 import { removeRecipeId, saveRecipeIds } from '../utils/localStorage';
@@ -23,7 +23,8 @@ const SavedRecipes = () => {
             You need to be logged in to see this page. Use the navigation links above to sign up or log in!
           </h4>
         );
-      }
+    }
+      
 
        // create function that accepts the recipe's mongo _id value as param and deletes the recipe from the database
 
@@ -56,9 +57,10 @@ const SavedRecipes = () => {
       }
     
         // sync localStorage with what was returned from the userData query
+        
         const savedRecipeIds = userData.savedRecipes.map((recipe) => recipe.recipeId);
         saveRecipeIds(savedRecipeIds);
-
+        
 
   return (
     <>
