@@ -31,8 +31,8 @@ const [mapLoaded, setMapLoaded] = React.useState(false);
   console.log('loader')
   const { isLoaded } = useJsApiLoader({
 
-    id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyB-O3fHzc3MbMi-GSsdCFCZ0UhxYaTI10A"
+    // id: 'google-map-script',
+    // googleMapsApiKey: {process.env.REACT_APP_MAPS_API_KEY}
   });
 
   useEffect(()=> {
